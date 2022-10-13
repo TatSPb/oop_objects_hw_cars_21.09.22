@@ -1,5 +1,7 @@
 import Transport.Car;
 
+import java.time.LocalDate;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("\n********* class HUMAN *********\n");
@@ -25,21 +27,65 @@ public class Main {
         calculate(bouquet);
 
         System.out.println("\n********* class CAR *********");
-        Car ladaGrande = new Car("Lada", "Grande", 1.7, "желтый", 2015,
-                "Россия", "ручная", "седан", "в568мт52", 5, true);
-        Car audiA8 = new Car("Audi", "A8 50 L TDI quattro", 3.0, "черный", 2020,
-                "Германия", "ручная", "седан", "в568мт52", 5, true);
-        Car bmwZ8 = new Car("BMW", "Z8", 3.0, "черный", 2021,
-                "Германия", "ручная", "седан", "в568мт52", 5, true);
-        Car kiaSportage4 = new Car("Kia", "Sportage поколение 4", 2.4, "красный", 2018,
-                "Южная Корея","ручная", "седан", "в568мт52", 5, true);
-        Car hyundaiAvante = new Car("Hyundai", "Avante", 1.6, "оранжевый", 2016,
-                "Южная Корея", "ручная", "седан", "в56852", 5, true);
+        Car ladaGrande = new Car(
+                "Lada",
+                "Grande",
+                1.7,
+                "желтый",
+                2015,
+                "Россия"
+//КАК ЧЕРЕЗ КОНСТРУКТОР ВНЕСТИ ДАННЫЕ ПО ВЛОЖЕННЫМ КЛАССАМ???
+//                ,"механическая",
+//                "седан",
+//                "123456789",
+//                5,
+//                (true, true),
+//        (2022-09-13, 10000.00, 123456789)
+        );
 
-        System.out.println("\n" + "Тестовая - если отсутствуют параметры:");
-        Car testCar = new Car(" ", null, 0, null, 0,
-                null, null, null, null, 0, false);
-//проверка номера:
+
+        Car audiA8 = new Car(
+                "Audi",
+                "A8 50 L TDI quattro",
+                3.0,
+                "черный",
+                2020,
+                "Германия"
+        );
+        audiA8.setTransmission("автомат");
+
+        Car bmwZ8 = new Car(
+                "BMW",
+                "Z8",
+                3.0,
+                "черный",
+                2021,
+                "Германия"
+        );
+        bmwZ8.setSummerTyres(false);
+
+        Car kiaSportage4 = new Car(
+                "Kia",
+                "Sportage поколение 4",
+                2.4,
+                "красный",
+                2018,
+                "Южная Корея"
+        );
+      kiaSportage4.setNumberOfSeats(7);
+
+        Car hyundaiAvante = new Car(
+                "Hyundai",
+                "Avante",
+                1.6,
+                "оранжевый",
+                2016,
+                "Южная Корея"
+        );
+
+        /***** CAR СТРАХОВКА И ДОСТУП ****/
+        Car.Insurance ladaGrandeIns = new Car.Insurance(null, 3263.23, "#2398");
+        System.out.println(ladaGrandeIns);
     }
 
     private static void calculate(Flower[] bouquet) {
