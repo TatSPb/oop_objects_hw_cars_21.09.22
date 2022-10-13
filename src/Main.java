@@ -54,6 +54,12 @@ public class Main {
         );
         audiA8.setTransmission("автомат");
 
+        //КАК ВНЕСТИ ДАТУ????
+        //audiA8.setInsurance(new Car.Insurance(2016-05-20, 30000, 321654987 ) );
+        audiA8.getInsurance().checkExpireDate();
+        audiA8.getInsurance().checkInsuranceNumber();
+        audiA8.setKey(new Car.Key(true, true));
+
         Car bmwZ8 = new Car(
                 "BMW",
                 "Z8",
