@@ -2,16 +2,10 @@ package Transport;
 
 import java.time.LocalDate;
 
-public class Car {
-    private final String brand;
-    private final String model;
-    private String color;
-    private final int productionYear;
-    private final String productionCountry;
-
+public class Motorcar extends Transport {
     private double engineVolume;
     private String transmission; //коробка
-    private final String bodyType;
+    private String bodyType;
     private String regNumber;
     private int numberOfSeats;
     private boolean summerTyres;
@@ -91,48 +85,30 @@ public class Car {
     }
 
 
-    /***** CAR КОНСТРУКТОРЫ ****/
-    public Car(String brand,
-               String model,
-               double engineVolume,
-               String color,
-               int productionYear,
-               String productionCountry,
-               String transmission,
-               String bodyType,
-               String regNumber,
-               int numberOfSeats,
-               boolean summerTyres,
-               Key key,
-               Insurance insurance) {
+    /***** MOTORCAR КОНСТРУКТОРЫ ****/
 
-        if (iisNullOrEmpty(brand)) {
-            this.brand = "DEFAULT";
-        } else {
-            this.brand = brand;
-        }
+    public Motorcar(String brand, String model, int productionYear, String productionCountry, double maxSpeed, String color) {
+        super(brand, model, productionYear, productionCountry,  maxSpeed, color);
+    }
 
-        if (iisNullOrEmpty(model)) {
-            this.model = "DEFAULT";
-        } else {
-            this.model = model;
-        }
+    public Motorcar(String brand,
+                    String model,
+                    int productionYear,
+                    String productionCountry,
+                    String color,
+                    double maxSpeed,
+                    double engineVolume,
+                    String transmission,
+                    String bodyType,
+                    String regNumber,
+                    int numberOfSeats,
+                    boolean summerTyres) {
 
-        this.engineVolume = 1.5;
+        super(brand, model, productionYear, productionCountry, maxSpeed, color);
 
-        if (iisNullOrEmpty(color)) {
-            this.color = "DEFAULT";
-        } else {
-            this.color = color;
-        }
 
-        this.productionYear = productionYear;
+        this.engineVolume = engineVolume;
 
-        if (iisNullOrEmpty(productionCountry)) {
-            this.productionCountry = "DEFAULT";
-        } else {
-            this.productionCountry = color;
-        }
 
         if (iisNullOrEmpty(transmission)) {
             this.transmission = "DEFAULT";
@@ -146,10 +122,63 @@ public class Car {
             this.bodyType = bodyType;
         }
 
+        if (iisNullOrEmpty(regNumber)) {
+            this.regNumber = "x000x000";
+        } else {
+            this.regNumber = regNumber;
+        }
+
+        this.numberOfSeats = numberOfSeats;
+        this.summerTyres = summerTyres;
+
+
+        System.out.println();
+        System.out.println(
+                "Автомобиль: " + getBrand() + " " + getModel() + "; \n"
+                        + "год выпуска: " + getProductionYear() + "; \n"
+                        + "страна сборки: " + getProductionCountry() + "; \n"
+                        + "тип кузова: " + getBodyType() + "; \n"
+                        + "цвет кузова: " + getColor() + "; \n"
+                        + "коробка передач: " + getTransmission() + "; \n"
+                        + "объем двигателя: " + getEngineVolume() + " литра; \n"
+                        + "MAX скорость передвижения: " + getMaxSpeed() + "км/час; \n"
+                        + "регистрационный номер: " + getRegNumber() + "; \n"
+                        + "количество мест " + getNumberOfSeats() + "; \n"
+                        + (isSummerTyres() ? "летняя" : "зимняя") + " резина; \n"
+        );
+    }
+
+    public Motorcar(String brand,
+                    String model,
+                    int productionYear,
+                    String productionCountry,
+                    String color,
+                    double maxSpeed,
+                    double engineVolume,
+                    String transmission,
+                    String bodyType,
+                    String regNumber,
+                    int numberOfSeats,
+                    boolean summerTyres,
+                    Key key,
+                    Insurance insurance) {
+
+        super(brand, model, productionYear, productionCountry, maxSpeed, color);
+
+
+        this.engineVolume = engineVolume;
+
+
         if (iisNullOrEmpty(transmission)) {
             this.transmission = "DEFAULT";
         } else {
             this.transmission = transmission;
+        }
+
+        if (iisNullOrEmpty(bodyType)) {
+            this.bodyType = "DEFAULT";
+        } else {
+            this.bodyType = bodyType;
         }
 
         if (iisNullOrEmpty(regNumber)) {
@@ -159,7 +188,6 @@ public class Car {
         }
 
         this.numberOfSeats = numberOfSeats;
-
         this.summerTyres = summerTyres;
 
         if (key == null) {
@@ -182,48 +210,10 @@ public class Car {
                         + "цвет кузова: " + getColor() + "; \n"
                         + "коробка передач: " + getTransmission() + "; \n"
                         + "объем двигателя: " + getEngineVolume() + " литра; \n"
+                        + "MAX скорость передвижения: " + getMaxSpeed() + "км/час; \n"
                         + "регистрационный номер: " + getRegNumber() + "; \n"
                         + "количество мест " + getNumberOfSeats() + "; \n"
                         + (isSummerTyres() ? "летняя" : "зимняя") + " резина; \n"
-        );
-    }
-
-
-    public Car(String brand,
-               String model,
-               double engineVolume,
-               String color,
-               int productionYear,
-               String productionCountry) {
-
-        this(
-                brand,
-                model,
-                engineVolume,
-                color,
-                productionYear,
-                productionCountry,
-                "DEFAULT",
-                "DEFAULT",
-                "x000xx000",
-                5,
-                true,
-                new Key(),
-                new Insurance()
-        );
-
-
-        System.out.println();
-        System.out.println(
-                "Автомобиль: " + getBrand() + " " + getModel() + "; \n"
-                        + "год выпуска: " + getProductionYear() + "; \n"
-                        + "страна сборки: " + getProductionCountry() + "; \n"
-                        + "тип кузова: " + getBodyType() + "; \n"
-                        + "цвет кузова: " + getColor() + "; \n"
-                        + "коробка передач: " + getTransmission() + "; \n"
-                        + "объем двигателя: " + getEngineVolume() + " литра; \n"
-                        + "регистрационный номер: " + getRegNumber() + "; \n"
-                        + "количество мест " + getNumberOfSeats() + "; \n"
                         + (getKey().isKeylessAccess() ? "бесключевой доступ" : "ключевой доступ") + "; \n"
                         + (getKey().isRemoteStartEngine() ? "удаленный запуск двигателя есть" : "удаленный запуск двигателя отсутствует") + "; \n"
                         + "номер страховки: " + getInsurance().getInsuranceNumber() + "; \n"
@@ -232,125 +222,99 @@ public class Car {
         );
     }
 
+    /***** CAR МЕТОДЫ ****/
+    public static boolean iisNullOrEmpty(String value) {
+        return value == null || value.isBlank();
+    }
 
-        /***** CAR МЕТОДЫ ****/
-        public static boolean iisNullOrEmpty (String value){
-            return value == null || value.isBlank();
-        }
+    public void changeTyres() {
+        this.summerTyres = !this.summerTyres; // метод инвертирования. Если summerTyres были true - меняем на false и наоборот
+    }
 
-
-
-        public void changeTyres () {
-            this.summerTyres = !this.summerTyres; // метод инвертирования. Если summerTyres были true - меняем на false и наоборот
-        }
-
-        public boolean checkRegNumber () {
-            if (regNumber.matches("[A-Z]\\d{3}[A-Z]{2}\\d{3}")) { //x000xx000
-                this.regNumber = regNumber;
-                return true;
-            } else if (regNumber.matches("[A-Z]\\d{3}[A-Z]{2}\\d{2}")) { //x000xx00
-                this.regNumber = regNumber;
-                return true;
-            } else {
-                this.regNumber = "Неверный формат номера";
-                return false;
-            }
-        }
-
-        /***** CAR ГЕТТЕРЫ И СЕТТЕРЫ ****/
-        public String getBrand () {
-            return brand;
-        }
-
-        public String getModel () {
-            return model;
-        }
-
-        public double getEngineVolume () {
-            return engineVolume;
-        }
-
-        public void setEngineVolume ( double engineVolume){
-            this.engineVolume = engineVolume;
-        }
-
-        public String getColor () {
-            return color;
-        }
-
-        public void setColor (String color){
-            this.color = color;
-        }
-
-        public int getProductionYear () {
-            return productionYear;
-        }
-
-        public String getProductionCountry () {
-            return productionCountry;
-        }
-
-        public String getTransmission () {
-            return transmission;
-        }
-
-        public void setTransmission (String transmission){
-            if (transmission == null) {
-                this.transmission = "DEFAULT";
-            }
-            this.transmission = transmission;
-        }
-
-        public String getBodyType () {
-            return bodyType;
-        }
-
-        public String getRegNumber () {
-            return regNumber;
-        }
-
-        public void setRegNumber (String regNumber){
-            if (regNumber == null) {
-                this.regNumber = "x000xx000";
-            }
+    public boolean checkRegNumber() {
+        if (regNumber.matches("[A-Z]\\d{3}[A-Z]{2}\\d{3}")) { //x000xx000
             this.regNumber = regNumber;
+            return true;
+        } else if (regNumber.matches("[A-Z]\\d{3}[A-Z]{2}\\d{2}")) { //x000xx00
+            this.regNumber = regNumber;
+            return true;
+        } else {
+            this.regNumber = "Неверный формат номера";
+            return false;
         }
+    }
 
-        public int getNumberOfSeats () {
-            return numberOfSeats;
-        }
+    /***** CAR ГЕТТЕРЫ И СЕТТЕРЫ ****/
 
-        public void setNumberOfSeats ( int numberOfSeats){
-            this.numberOfSeats = numberOfSeats;
-        }
 
-        public boolean isSummerTyres () {
-            return summerTyres;
-        }
+    public double getEngineVolume() {
+        return engineVolume;
+    }
 
-        public void setSummerTyres(boolean summerTyres){
-            this.summerTyres = summerTyres;
-        }
-
-        public Key getKey () {
-            return key;
-        }
-
-        public void setKey (Key key){
-            this.key = key;
-        }
-
-        public Insurance getInsurance () {
-            return insurance;
-        }
-
-        public void setInsurance (Insurance insurance){
-            this.insurance = insurance;
-        }
-
+    public void setEngineVolume(double engineVolume) {
+        this.engineVolume = engineVolume;
     }
 
 
+    public String getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(String transmission) {
+        if (transmission == null) {
+            this.transmission = "DEFAULT";
+        }
+        this.transmission = transmission;
+    }
+
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public String getRegNumber() {
+        return regNumber;
+    }
+
+    public void setRegNumber(String regNumber) {
+        if (regNumber == null) {
+            this.regNumber = "x000xx000";
+        }
+        this.regNumber = regNumber;
+    }
+
+    public int getNumberOfSeats() {
+        return numberOfSeats;
+    }
+
+    public void setNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+    }
+
+    public boolean isSummerTyres() {
+        return summerTyres;
+    }
+
+    public void setSummerTyres(boolean summerTyres) {
+        this.summerTyres = summerTyres;
+    }
+
+    public Key getKey() {
+        return key;
+    }
+
+    public void setKey(Key key) {
+        this.key = key;
+    }
+
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
+    }
+
+}
 
 
 
