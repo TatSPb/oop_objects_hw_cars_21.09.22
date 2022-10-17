@@ -17,4 +17,9 @@ public class Bus extends Transport{
                         + "Bus color: " + getColor() + ". \n"
         );
     }
+
+    @Override
+    public void refill() {System.out.println("REFILL (в зависимости от типа ): \n карбюратор - заправить бензином, " +
+            "\n инжектор - заправить дизелем ");
+    }
 }

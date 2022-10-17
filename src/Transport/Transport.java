@@ -67,6 +67,7 @@ public abstract class Transport {
     public static boolean iisNullOrEmpty(String value) {
         return value == null || value.isBlank();
     }
+    public abstract void refill();
 
 
     /***** TRANSPORT геттеры и сеттеры ****/
