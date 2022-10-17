@@ -10,7 +10,6 @@ public class Train extends Transport{
 
     /***** TRAIN конструкторы ****/
 
-
     public Train(String brand,
                  String model,
                  int productionYear,
@@ -59,6 +58,13 @@ public class Train extends Transport{
                         + "Trip price: " + getCost() + ". \n"
                         + "Wagon amount: " + getWagonAmount() + " psc. \n"
         );
+    }
+
+
+    /***** TRAIN методы ****/
+    @Override
+    public void refill() {
+        System.out.println("REFILL: заправить топливом дизель");
     }
 
     /***** TRAIN геттеры и сеттеры ****/
